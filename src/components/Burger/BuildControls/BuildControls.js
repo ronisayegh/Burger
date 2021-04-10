@@ -11,8 +11,19 @@ const controls=[
 const BuildControls = (props) => {
     return (
         <div className={classes.BuildControls}>
+            
             {controls.map(el => (
-                <BuildControl decrease={()=>props.removed(el.type)} increase={()=>props.added(el.type)} key={el.label} label={el.label}></BuildControl>))}
+                <BuildControl 
+                decrease={()=>props.removed(el.type)} 
+                increase={()=>props.added(el.type)} 
+                key={el.label} 
+                label={el.label}
+                disable={props.disabled[el.label]}></BuildControl>))}
+            <p>Total Price: {props.total}</p>
+            <button 
+            className={classes.OrderButton}
+            disabled={!props.purchasable}
+            onClick={props.ordered}>Order Now</button>
         </div>
     )
 }
